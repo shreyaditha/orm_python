@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pyorm-postgres
+    environment:
+      POSTGRES_USER: pyorm
+      POSTGRES_PASSWORD: pyorm
+      POSTGRES_DB: pyorm
+    ports:
+      - "54329:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pyorm"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
